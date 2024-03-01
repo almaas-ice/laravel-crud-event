@@ -15,7 +15,7 @@ use App\Http\Controllers\EventController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/events');
 });
 
 Route::get('/events', [EventController::class, 'get']);
