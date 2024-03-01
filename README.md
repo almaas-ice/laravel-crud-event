@@ -13,7 +13,7 @@ Prerequisite:
 
 Follow these steps below to run the project on your local machine:
 
-1. Clone the repository
+1. Fork and Clone the repository
 
     ```bash
     git clone https://github.com/{your_github_username}/laravel-crud-pegawai.git
