@@ -13,4 +13,11 @@ class EventController extends Controller
         $events = Event::all();
         return view('events/index', ['events' => $events]);
     }
+
+    public function detail($id)
+    {
+        $event = Event::find($id);
+        return view('events/detail', ['event' => $event]);
+    }
 }
+
