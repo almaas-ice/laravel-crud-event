@@ -13,4 +13,11 @@ class EventController extends Controller
         $events = Event::all();
         return view('events/index', ['events' => $events]);
     }
+
+    public function delete($id){
+        $event = Event::find($id);
+        $event->delete();
+        return redirect('/events');
+    }
+
 }
