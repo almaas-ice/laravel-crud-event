@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/events', [EventController::class, 'get']);
+Route::get('/events/create',[EventController::class,'createView']);
+Route::post('/events/create',[EventController::class,'create']);
