@@ -20,6 +20,23 @@ class EventController extends Controller
         return view('events/detail', ['event' => $event]);
     }
 
+    public function createView()
+    {
+        return view('events/create');
+    }
+
+    public function create(Request $request)
+    {
+        $validate = $request->validate([
+            'name' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'description' => 'required',
+            ]);
+        Event::create($validate);
+        return redirect('/events');
+    }
+
     public function delete($id){
         $event = Event::find($id);
         $event->delete();
