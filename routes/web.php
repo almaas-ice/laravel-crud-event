@@ -20,6 +20,15 @@ Route::get('/', function () {
 
 Route::get('/events', [EventController::class, 'get']);
 
+Route::get('/events/detail/{id}', [EventController::class, 'detail']);
+
+Route::get('/events/create',[EventController::class,'createView']);
+
+Route::post('/events/create',[EventController::class,'create']);
+
 Route::get('/events/edit/{id}', [EventController::class, 'edit']);
+
 Route::post('/events/update', [EventController::class, 'update']);
-Route::put('/events/{id}', [EventController::class, 'update']);
+
+Route::get('/events/delete/{id}',[EventController::class,'delete']);
+
