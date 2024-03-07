@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/events', [EventController::class, 'get']);
+
+Route::get('/events/edit/{id}', [EventController::class, 'edit']);
+Route::post('/events/update', [EventController::class, 'update']);
+Route::put('/events/{id}', [EventController::class, 'update']);

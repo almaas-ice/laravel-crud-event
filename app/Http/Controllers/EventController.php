@@ -13,4 +13,28 @@ class EventController extends Controller
         $events = Event::all();
         return view('events/index', ['events' => $events]);
     }
+    public function edit($id)
+    {
+        $event = Event::findOrFail($id);
+        return view('events/edit', ['event' => $event]);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'name' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'description' => 'required',
+        ]);
+        
+        $event = Event::findOrFail($id);
+        $event->update($validate);
+
+
+        return redirect('/events');
+    }   
+    
+
 }
