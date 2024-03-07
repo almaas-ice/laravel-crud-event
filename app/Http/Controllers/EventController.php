@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+// use App\Validators\TimeFormatValidator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
@@ -29,7 +30,7 @@ class EventController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required',
-            'date' => 'required',
+            'date' => 'required|date_format:Y-m-d',
             'time' => 'required',
             'description' => 'required',
             ]);
