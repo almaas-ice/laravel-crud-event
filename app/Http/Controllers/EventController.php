@@ -14,10 +14,15 @@ class EventController extends Controller
         return view('events/index', ['events' => $events]);
     }
 
+    public function detail($id)
+    {
+        $event = Event::find($id);
+        return view('events/detail', ['event' => $event]);
+    }
+
     public function delete($id){
         $event = Event::find($id);
         $event->delete();
         return redirect('/events');
     }
-
 }
