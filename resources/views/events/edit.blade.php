@@ -12,7 +12,7 @@
     <h2 class="text-2xl font-semibold mt-5 mb-2">Membuat CRUD Event Kelompok 6</h2>
     <h3 class="text-lg font-normal mb-2">Update Event</h3>
         <div class="space-y-4">
-    {!! Form::model($event, ['url' => ['events', $event->id], 'method' => 'put']) !!}
+    {!! Form::model($event, ['url' => ['events/edit', $event->id], 'method' => 'put']) !!}
         <div class="form-group @if($errors->first('name')) has-error @endif">
             {{ Form::label('name',null, 'Event', ['class' => 'control-label block font-medium text-gray-700 ml-7']) }}
             {{ Form::text('name', null, array_merge(['class' => 'form-control space-y-4 form-input mt-1 ml-6 block w-64 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50', 'placeholder' => 'Nama Event'])) }}
