@@ -16,13 +16,13 @@ Follow these steps below to run the project on your local machine:
 1. Fork and Clone the repository
 
     ```bash
-    git clone https://github.com/{your_github_username}/laravel-crud-pegawai.git
+    git clone https://github.com/{your_github_username}/laravel-crud-event.git
     ```
 
 2. Navigate to the project's directory
 
     ```bash
-    cd laravel-crud-pegawai
+    cd laravel-crud-event
     ```
 
 3. Install the project's dependency
