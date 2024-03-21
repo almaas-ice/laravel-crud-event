@@ -1,6 +1,8 @@
+<?php
 
+namespace App\Validators;
 
-class TimeFormatValidator implements ValidatorInterface
+class TimeFormatValidator
 {
     public function validate($attribute, $value, array $parameters): bool
     {

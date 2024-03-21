@@ -2,67 +2,60 @@
 
 namespace App\Http\Controllers;
 
-// use App\Validators\TimeFormatValidator;
 use App\Http\Controllers\Controller;
+use App\Repositories\EventRepository;
+use App\Validators\EventValidator;
 use Illuminate\Http\Request;
-use App\Models\Event;
 
 class EventController extends Controller
 {
-    public function get()
+    private $eventRepository;
+
+    public function __construct(EventRepository $eventRepository)
     {
-        $events = Event::all();
+        $this->eventRepository = $eventRepository;
+    }
+
+    public function getEvents()
+    {
+        $events = $this->eventRepository->all();
         return view('events/index', ['events' => $events]);
     }
 
-    public function detail($id)
+    public function getEventDetail($id)
     {
-        $event = Event::find($id);
+        $event = $this->eventRepository->find($id);
         return view('events/detail', ['event' => $event]);
     }
 
-    public function createView()
+    public function createEventForm()
     {
         return view('events/create');
     }
 
-    public function create(Request $request)
+    public function createEvent(Request $request, EventValidator $validator)
     {
-        $validate = $request->validate([
-            'name' => 'required',
-            'date' => 'required|date_format:Y-m-d',
-            'time' => 'required',
-            'description' => 'required',
-            ]);
-        Event::create($validate);
+        $validator->validate($request);
+        $this->eventRepository->create($request->all());
         return redirect('/events');
     }
-  
-    public function edit($id)
+
+    public function updateEventForm($id)
     {
-        $event = Event::findOrFail($id);
+        $event = $this->eventRepository->find($id);
         return view('events/edit', ['event' => $event]);
     }
 
-    public function update(Request $request, $id)
+    public function updateEvent(Request $request, $id, EventValidator $validator)
     {
-        $validate = $request->validate([
-            'name' => 'required',
-            'date' => 'required',
-            'time' => 'required',
-            'description' => 'required',
-        ]);
-        
-        $event = Event::findOrFail($id);
-        $event->update($validate);
-
+        $validator->validate($request);
+        $this->eventRepository->update($id, $request->all());
         return redirect('/events');
-    }   
+    }
 
-    public function delete($id)
+    public function deleteEvent($id)
     {
-        $event = Event::find($id);
-        $event->delete();
+        $this->eventRepository->delete($id);
         return redirect('/events');
-    }  
+    }
 }
